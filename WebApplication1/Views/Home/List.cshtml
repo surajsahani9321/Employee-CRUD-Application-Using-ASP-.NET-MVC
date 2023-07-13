@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebApplication1.Models.UserModel>
+
+@{
+    ViewData["Title"] = "Employee Data";
+}
+
+<h3>@ViewData["Title"]</h3>
+<p>
+    <a href="/user/create">Create New</a>
+</p>
+
+@if (Model != null)
+{
+    <table class="table table-striped table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>Employee Id</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Address Line</th>
+                <th>City</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>
+                        @employee.EmployeeId
+                    </td>
+                    <td>
+                        @employee.FullName
+                    </td>
+                    <td>
+                        @employee.Email
+                    </td>
+                    <td>
+                        @employee.AddressLine
+                    </td>
+                    <td>
+                        @employee.City
+                    </td>
+                    <td>
+                        <a href="/user/edit/@employee.EmployeeId">Edit</a> |
+                        <a href="/user/delete/@employee.EmployeeId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No employee data available.</p>
+}
